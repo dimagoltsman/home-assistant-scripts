@@ -21,7 +21,7 @@ def send_packet(packet):
   call([BROADLINK_CLI_PATH, "--type", "0x2712", "--host", HOST, "--mac", MAC, "--send", b64])
 
 def switch_channel(num):
-  for n in channel:
+  for n in num:
     send_packet(dict[n])
     time.sleep(0.5)
     
