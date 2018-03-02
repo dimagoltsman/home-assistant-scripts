@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# this script turns tv + one more device and switches to channel by input text at HA
 from subprocess import call
 import codecs
 import sys
