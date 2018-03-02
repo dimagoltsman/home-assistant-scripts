@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+from subprocess import call
+import codecs
+import sys
+import time
+import json
+import importlib.util
+spec = importlib.util.spec_from_file_location("utils", "/home/homeassistant/.homeassistant/scripts/utils.py")
+Utils = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(Utils)
+
+HOST = "192.168.1.151"
+MAC = "34ea3442e691"
+BROADLINK_CLI_PATH = "/home/homeassistant/.homeassistant/broadlink/broadlink_cli"
+
+def send_packet(packet):
+  decoded = codecs.decode(packet.encode(), 'base64')
+  b64 = codecs.encode(decoded, 'hex').decode()
+  call([BROADLINK_CLI_PATH, "--type", "0x2712", "--host", HOST, "--mac", MAC, "--send", b64])
+
+def switch_channel(num):
+  for n in channel:
+    send_packet(dict[n])
+    time.sleep(0.5)
+    
+    
+
+
+kartina_on = 'JgBYAAABJ5QSNxEUETgROBE4EjcSExI3EjcSNxITEhMRExMSExIRExM3FBESNxITERQQFBI3FBESExA5EhITNxI3EjcSExI3EgAFJwABJ0kTAAxPAAElShEADQU='
+tv_on = 'JgBYAAABJpQSExETExITEhITEhMSExETEjcSNxI3EzYTNxI3EhMSNxI3ExIROBE4EhITExISExMQFBI3EhMSExE4ETgROBE4EgAFTAABJkoSAAxPAAEmShEADQU='
+dict = {
+    '1': 'JgBQAAABK5AWMxcPFjMWMxczFjMWDxYzFjQVNBYPFg8WDxUPFg8WDxYzFjQVNBYPFg8WDxYyFzMXDxUPFg8WMxcyFzMWDxYOFwAFJgABLEYVAA0FAAAAAAAAAAA=',
+    '2': 'JgBQAAABLJAWMxYPFjQVNBU0FjQVDxYzFzMWMxYPFg8WDxYPFg8VEBU0FjMWNBUPFg8XDhY0FQ8WDxYPFg4XMxYzFjMXDxYzFgAFJwABK0YWAA0FAAAAAAAAAAA=',
+    '3': 'JgBQAAABK5EVNBYOFzIXMxYzFzMWDxYzFzIXMxYPFg4XDhcOFhAVDxYzFzIXMxYPFg8WDhcOFzMWDxUPFw4XMhczFjMXMxYPFQAFKAABK0UXAA0FAAAAAAAAAAA=',
+    '4': 'JgBQAAABK5AXMxYPFjMWMxczFjMXDhY0FTQWMxYPFg8WDxUQFQ8XDhczFg8VNBYzFjQVNBYzFjQVDxcyFw8WDxUPFg8WDxYPFgAFJgABLEYWAA0FAAAAAAAAAAA=',
+    '5': 'JgBQAAABK5AWMxcOFjQVNBYzFjQVDxYzFzMWMxYPFw4WEBUPFg8WDxU0Fg8WMxYzFzMWMxYzFw4XDxU0FQ8WDxcOFg8WDxYzFgAFJwABLEUWAA0FAAAAAAAAAAA=',
+    '6': 'JgBUAAUABhUAASyQFjMWDxYzFjMXMxYzFg8XMxYzFjMXDxUQFQ8WDxYPFg4XMxYPFjIXMxczFjMWDxY0FQ8WMxcOFw8VDxYPFjMXDhcABSYAAStGFgANBQAAAAA=',
+    '7': 'JgBQAAABKpAXMxYPFjMXNBUzFjMXDxU0FTQWNBUPFg8WDxcOFg8WDxYzFg8WMxY0FQ8WMxcPFg8VEBUzFw4XDxYzFg8VNBYzFgAFKAABKkYXAA0FAAAAAAAAAAA=',
+    '8': 'JgBQAAABLJAXMxYPFjMWMxY0FTQWDxY0FTMWMxcPFg8WDxUPFg8WDxYzFg8WMxczFjMWDxYzFw8VDxYzFg8XDhcPFTQVDxYzFwAFJgABLEYVAA0FAAAAAAAAAAA=',
+    '9': 'JgBQAAABLJAWMxYQFTQVNRU0FTQVDxczFjMWMxcOFw8VDxYPFg8VDxcyFw8WMxYzFzMWDxUPFjMXDxYzFg8WDxYOFzMWMxcOFwAFJgABK0YWAA0FAAAAAAAAAAA=',
+    '0': 'JgBQAAABK5EVNBYPFjMWMxczFjMWDxYzFzQVMxcOFg8WDxYPFQ8WDxYzFw8VNBU0FjQVDxYPFg8WDxY0FQ8WDxYPFjMWNBU0FgAFJwABK0YWAA0FAAAAAAAAAAA='
+}
+
+
+send_packet(kartina_on)
+time.sleep(0.5)
+send_packet(tv_on)
+time.sleep(5)
+
+channel = list(Utils.getApi("states/input_text.tv_channel")["state"])
+
+switch_channel(channel)
