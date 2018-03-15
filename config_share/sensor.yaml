@@ -1,0 +1,198 @@
+- platform: command_line
+  name: CPU Temperature
+  command: "/opt/vc/bin/vcgencmd measure_temp | cut -c 6-9"
+  unit_of_measurement: "°C"
+
+- platform: systemmonitor
+  resources:
+    - type: disk_free
+      arg: /
+    - type: memory_free
+    - type: processor_use
+    
+- platform: miflora
+  mac: 'C4:7C:8D:61:39:25'
+  name: Money tree
+  force_update: false
+  median: 3
+  monitored_conditions:
+    - temperature
+    - moisture
+    - light
+    - conductivity
+    - battery
+
+- platform: cpuspeed
+
+- platform: cert_expiry
+  host: myhost.net
+  name: this domain expiration
+
+
+- platform: version
+
+- platform: command_line
+  name: Media Center Free Space
+  command: /home/homeassistant/.homeassistant/scripts/routerFreeSpace
+  unit_of_measurement: "GiB"
+  
+- platform: command_line
+  name: forum.home-assistant.co.il expiration
+  command: /home/homeassistant/.homeassistant/scripts/forumSslExpiry
+  unit_of_measurement: "days"
+
+- platform: mqtt
+  state_topic: "ESP_Easy_D1/DHT11"
+  name: mqtt_test
+
+- platform: mqtt
+  state_topic: "ESP_Easy_D1/DHT11"
+  name: d1_dht11
+  
+- platform: mqtt
+  state_topic: "ESP_Easy_0/Light"
+  value_template: '{{ value_json.svalue }}'
+  name: Living Room Light
+  unit_of_measurement: "%"
+  
+- platform: mqtt
+  state_topic: "ESP_Easy_2/DHT11"
+  name: esp_2_dht11
+  
+  
+- platform: command_line
+  name: Total Consumption
+  command: curl -s http://127.0.0.1:63080/last | jq ".[0].TotalImport" | xargs printf "%.2f\n"
+  scan_interval: 60
+  unit_of_measurement: KWh
+
+- platform: command_line
+  name: Voltage
+  command: curl -s http://127.0.0.1:63080/last | jq ".[0].Voltage.L1" | xargs printf "%.2f\n"
+  scan_interval: 1
+  unit_of_measurement: Volts
+  
+- platform: command_line
+  name: Current
+  command: curl -s http://127.0.0.1:63080/last | jq ".[0].Current.L1" | xargs printf "%.2f\n"
+  scan_interval: 1
+  unit_of_measurement: Ampere
+
+- platform: command_line
+  name: Power
+  command: p=$(curl -s http://127.0.0.1:63080/last | jq ".[0].Power.L1")  ; echo "$p  / 1000" | bc -l | xargs printf "%.2f\n"
+  scan_interval: 1
+  unit_of_measurement: KW
+  
+  
+- platform: command_line
+  name: Voltage Graph
+  command: curl -s http://127.0.0.1:63080/last | jq ".[0].Voltage.L1" | xargs printf "%.2f\n"
+  scan_interval: 120
+  unit_of_measurement: Volts
+  
+- platform: command_line
+  name: Current Graph
+  command: curl -s http://127.0.0.1:63080/last | jq ".[0].Current.L1" | xargs printf "%.2f\n"
+  scan_interval: 120
+  unit_of_measurement: Ampere
+
+- platform: command_line
+  name: Power Graph
+  command: p=$(curl -s http://127.0.0.1:63080/last | jq ".[0].Power.L1")  ; echo "$p  / 1000" | bc -l | xargs printf "%.2f\n"
+  scan_interval: 120
+  unit_of_measurement: KW
+  
+  
+  
+- platform: command_line
+  name: Price
+  command: p=$(curl -s http://127.0.0.1:63080/last | jq ".[0].Power.L1")  ; echo "$p * 0.5404 / 1000" | bc -l | xargs printf "%.2f\n"
+  scan_interval: 10
+  unit_of_measurement: ₪/hour
+  
+- platform: command_line
+  name: Period Power Consumption
+  command: curl -s 127.0.0.1:5002/execute/python/kwh_meter
+  scan_interval: 10
+  unit_of_measurement: KWh
+  
+- platform: command_line
+  name: Boiler Off Timer
+  command: curl -s 127.0.0.1:5002/execute/python/boilerOffIn
+  scan_interval: 10
+  
+
+
+- platform: template
+  sensors:
+    elecricity_price:
+      friendly_name: "Price for period"
+      unit_of_measurement: '₪'
+      value_template: "{{(states.sensor.period_power_consumption.state | float * 0.5404) | round(2) }}"
+    boiler_turned_on:
+      friendly_name: "Turn Off Time"
+      value_template: >-
+        {% if states.timer.boiler.state == "idle"%}
+        No Off Time Scheduled
+        {% else %}
+        {% set duration =  as_timestamp("1970-01-01 " + states.timer.boiler.attributes.duration + ".0+00:00") %}  
+        {% set off_time = as_timestamp(states.timer.boiler.last_changed) + duration  %}
+        {{off_time | timestamp_custom("%H:%M:%S", true) }}
+        {% endif %}
+    light_pic:
+      friendly_name: "Light"
+      value_template: >-
+        {{ states("sensor.light") | int }} 
+      entity_picture_template: >-
+        /local/brightness/{{states("sensor.esp0_light") | int }}.png
+
+- platform: scrape
+  name: Latest relese
+  resource: https://home-assistant.io
+  select: ".current-version h1"
+  value_template: '{{ value.split(":")[1] }}'
+
+
+- platform: command_line
+  name: States Table Size
+  command: curl -s 127.0.0.1:5002/execute/python/dbSize | jq .states
+  scan_interval: 60
+  unit_of_measurement: Mb
+
+  
+- platform: command_line
+  name: Events Table Size
+  command: curl -s 127.0.0.1:5002/execute/python/dbSize  | jq .events
+  scan_interval: 60
+  unit_of_measurement: Mb  
+
+- platform: command_line
+  name: Build
+  command: curl -s http://192.168.1.124/json | jq ".System.Build"
+  scan_interval: 60
+
+- platform: command_line
+  name: Uptime
+  command: curl -s http://192.168.1.124/json | jq ".System.Uptime"
+  scan_interval: 60
+  unit_of_measurement: Minutes
+  
+- platform: command_line
+  name: Free Ram
+  command: curl -s http://192.168.1.124/json | jq ".System.\"Free RAM\""
+  scan_interval: 60
+  unit_of_measurement: bytes  
+  
+- platform: command_line
+  name: Living Room Temperature
+  command: curl -s http://192.168.1.124/json?tasknr=2 | jq ".Temperature"
+  scan_interval: 60  
+  unit_of_measurement: "°C"
+  
+- platform: command_line
+  name: Living Room Humidity
+  command: curl -s http://192.168.1.124/json?tasknr=2 | jq ".Humidity"
+  scan_interval: 60  
+  unit_of_measurement: "%"
+

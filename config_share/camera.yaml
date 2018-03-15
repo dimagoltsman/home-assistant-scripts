@@ -1,0 +1,5 @@
+- platform: mjpeg
+  mjpeg_url: http://somecamera/axis-cgi/mjpg/video.cgi?camera=0
+  name: "10Bis Cam"
+  
+  

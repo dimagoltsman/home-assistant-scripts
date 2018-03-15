@@ -1,0 +1,12 @@
+boiler_on_time:
+  name: Turn On Boiler
+  initial: off
+  icon: mdi:timer
+bedroom_heat_on_time:
+  name: Bedroom Heat On
+  initial: off
+  icon: mdi:timer
+tv_timer:
+  name: Tv Timer
+  initial: off
+  icon: mdi:timer

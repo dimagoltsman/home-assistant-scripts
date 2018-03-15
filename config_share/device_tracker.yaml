@@ -1,0 +1,4 @@
+- platform: linksys_smart
+  host: 192.168.1.1
+  track_new_devices: false
+  interval_seconds: 15

@@ -1,0 +1,18 @@
+current:
+  name: Current
+  refresh: 0
+  hours_to_show: 8
+  entities:
+    - sensor.current_graph
+voltage:
+  refresh: 0
+  name: Voltage
+  hours_to_show: 8
+  entities:
+    - sensor.voltage_graph
+power:
+  name: Power
+  hours_to_show: 8
+  refresh: 0
+  entities:
+    - sensor.power_graph

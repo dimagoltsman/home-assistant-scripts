@@ -1,0 +1,9 @@
+project_id: id-home
+client_id: !secret google_assistant_client_id
+access_token: !secret google_assistant_access_token
+exposed_domains:
+  - switch
+  - light
+  - group
+    
+   

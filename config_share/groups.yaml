@@ -1,0 +1,295 @@
+default_view:
+  view: yes
+  icon: mdi:home 
+  entities:
+    - group.environment
+    - group.media
+    - group.boiler
+    - group.air_cond
+    - group.bedroom_ac
+    - device_tracker.galaxys8
+    - device_tracker.galaxynote8
+    - group.money_plant
+    - sensor.current
+    - group.tv_timer
+    - updater.updater
+
+environment:
+  view: no
+  control: hidden
+  name: Environment
+  entities:
+    - sensor.living_room_temperature
+    - sensor.living_room_light
+    - sensor.living_room_humidity
+    
+  
+    
+bedroom_ac:
+  view: no
+  control: hidden
+  name: Bedroom AC
+  entities:
+    - switch.bedroom_morning_heat
+    - input_boolean.bedroom_heat_on_time
+    - input_datetime.bedroom_heat_timer
+    
+    
+lights:
+ view: yes
+ icon: mdi:lightbulb-on
+ entities:
+    - group.parents_bedroom_light
+    - group.livingroom_light
+    - group.facilities
+    - group.rooms
+    - scene.turn_all_light_off
+
+parents_bedroom_light:
+  name: "Parents Room"
+  view: no
+  entities:
+    - switch.parents_room_light
+    - switch.parents_room_fan
+    - script.bedroom_led
+livingroom_light:
+  name: "Living Room"
+  control: hidden
+  view: no
+  entities:
+    - switch.living_room_1
+    - switch.living_room_2
+    - switch.enterence
+    - switch.balcony
+rooms:
+  name: "Rooms"
+  control: hidden
+  view: no
+  entities:
+    - switch.work_room
+    - switch.victorias_room
+    - switch.beauty_saloon
+    
+facilities:
+  name: "Facilities"
+  control: hidden
+  view: no
+  entities:
+    - switch.coridor
+    - switch.kitchen
+    - switch.bathroom
+    - switch.service_room
+    
+electricity:
+  view: yes
+  icon: mdi:flash
+  name: "Home Power"
+  entities:
+    - sensor.voltage
+    - sensor.current
+    - sensor.power
+    - sensor.price
+    - group.electricity_box
+    - history_graph.voltage
+    - history_graph.current
+    - history_graph.power
+
+electricity_box:
+  view: no
+  name: Mesurements
+  entities:
+    - sensor.total_consumption
+    - sensor.period_power_consumption
+    - sensor.elecricity_price
+    - input_datetime.kwh_from
+    - input_datetime.kwh_to
+    
+
+system_view:
+  view: yes
+  icon: mdi:raspberrypi
+  entities:
+    - group.system
+    - group.db_sizes
+    - group.ha
+    - group.ssl
+    - sensor.cpu_temperature
+    - sensor.cpu_used
+#    - group.speedtest
+    - group.actions
+    - group.esp8266
+    
+esp8266:
+  view: no
+  entities:
+    - sensor.build
+    - sensor.free_ram
+    - sensor.uptime
+    
+#speedtest:
+#  view: no
+#  icon: mdi:speedometer
+#  entities:
+#    - sensor.speedtest_ping
+#    - sensor.speedtest_download
+#    - sensor.speedtest_upload
+    
+db_sizes:
+  name: Database
+  view: no
+  control: hidden
+  icon: mdi:database
+  entities:
+    - sensor.states_table_size
+    - sensor.events_table_size
+    - script.optimize_db
+ha:
+  view: no
+  name: "Home Assistant"
+  entities:
+    - sensor.current_version
+    - sensor.latest_relese
+
+ssl:
+  view: no
+  name: "SSL"
+  entities:
+    - sensor.this_domain_expiration
+    - sensor.forumhomeassistantcoil_expiration
+  
+actions:
+  view: no
+  control: hidden
+  name: "Actions"
+  entities:
+    - script.restart_sdm
+    - script.restart_transmission
+    - script.clear_logs
+ 
+system:
+  view: no
+  control: hidden
+  name: "System"
+  entities:
+    - sensor.disk_free_
+    - sensor.media_center_free_space
+    - sensor.ram_free
+    - sensor.cpu_speed
+    
+    
+
+media:
+  name: "Home Media"
+  control: hidden
+  view: no
+  icon: mdi:television-classic
+  entities:
+    - switch.hisense
+    - script.kartina_power
+    - script.mibox_power
+    - script.sound_power
+    - script.volume_up
+    - script.volume_down
+    - script.volume_mute
+
+neato_view:
+  icon: mdi:broom
+  name: "Neato"
+  view: yes
+  entities:
+    - device_tracker.neato
+    - vacuum.neato
+    - switch.neato_schedule
+    - camera.neato_cleaning_map
+    
+boiler:
+  name: "Boiler"
+  control: hidden
+  view: no
+  entities:
+    - switch.boiler
+    - sensor.boiler_off_timer
+    - input_boolean.boiler_on_time
+    - input_datetime.boiler_timer
+
+  
+air_cond:
+  name: "Air Conditioner"
+  view: no
+  entities:
+    - switch.air_cond_api
+    - climate.tadiran
+
+    
+players:
+  name: "Media Players"
+  control: hidden
+  view: yes
+  icon: mdi:television-classic
+  entities:
+    - media_player.chromecastdima
+    - media_player.kodi
+    - media_player.mibox3
+    - media_player.home_media
+    
+survailence:
+  name: "Cameras"
+  view: yes
+  icon: mdi:cctv
+  entities:
+    - camera.10bis_cam
+  
+money_plant:
+  name: "Money Tree"
+  view: no
+  icon: mdi:pine-tree
+  entities:
+    - sensor.money_tree_battery
+    - sensor.money_tree_conductivity
+    - sensor.money_tree_light_intensity
+    - sensor.money_tree_moisture
+    - sensor.money_tree_temperature
+  
+automation:
+  view: yes
+  icon: mdi:home-automation
+  entities:
+    - automation.boiler_automation
+    - automation.boiler_slider_time_border
+    - automation.cpu_temperature
+    - automation.critical_high_temperature
+    - automation.critical_low_temperature
+    - automation.money_tree_moister
+    - automation.money_tree_fertility
+    - automation.media_hdd_space
+    - automation.update_notifications
+#    - automation.boiler_morning_off
+#    - automation.boiler_morning_on
+
+tv_timer:
+  view: no
+  name: "TV Timer"
+  entities:
+    - input_boolean.tv_timer
+    - input_datetime.tv_timer
+    - input_text.tv_channel
+    
+
+
+test:
+  view: yes
+  entities:
+    - group.test1
+    - binary_sensor.presense_livingroom
+    - script.tv_channel
+    
+test1:
+  view: no
+  entities:
+    - sensor.mqtt_test
+    - sensor.esp_2_dht11
+    
+    
+
+
+  

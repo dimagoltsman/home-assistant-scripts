@@ -1,0 +1,24 @@
+router:
+  title: 'Router'
+  url: 'https://router.url.net'
+  icon: mdi:router-wireless
+transmission:
+  title: 'Transmission'
+  url: 'https://transmission.url.net'
+  icon: mdi:download-network
+configurator:
+  title: 'Configurator'
+  url: 'https://configurator.url.net'
+  icon: mdi:wrench
+kodi:
+  title: "Kodi"
+  url: 'https://kodi.url.net'
+  icon: mdi:kodi
+components:
+  title: "Components"
+  url: 'https://home-assistant.io/components/'
+  icon: mdi:home-assistant
+evernote:
+  title: "Notes"
+  url: 'https://www.evernote.com/shard/sjtu/sh/djdjr-sfgssdf-sfdg-9953-a64a570c1a01/sdfsdfhfdhds.html'
+  icon: mdi:evernote

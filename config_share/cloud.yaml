@@ -1,0 +1,13 @@
+alexa:
+  filter:
+    include_domains:
+      - switch
+      - sensor
+      - media_player
+    #   - script
+      - scene
+      - light
+      - fan
+    exclude_entities:
+      - switch.bedroom_morning_heat
+      - switch.hisense

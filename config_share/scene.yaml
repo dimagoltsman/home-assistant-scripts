@@ -1,0 +1,16 @@
+- name: Turn All Light Off
+  entities:
+    switch.parents_room_light: off
+    switch.parents_room_fan: off
+    switch.living_room_1: off
+    switch.living_room_2: off
+    switch.enterence: off
+    switch.balcony: off
+    switch.beauty_saloon: off
+    switch.coridor: off
+    switch.kitchen: off
+    switch.bathroom: off
+    switch.work_room: off
+    switch.victorias_room: off
+    switch.service_room: off
+    

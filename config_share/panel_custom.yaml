@@ -1,0 +1,6 @@
+- name: webmin
+  sidebar_title: Webmin
+  sidebar_icon: mdi:server-network
+  url_path: webmin
+  webcomponent_path: /home/homeassistant/.homeassistant/panels/webmin.html
+  

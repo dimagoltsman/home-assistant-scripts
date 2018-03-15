@@ -1,0 +1,32 @@
+purge_interval: 1
+purge_keep_days: 90
+db_url: !secret db_url
+include:
+  domains:
+    - sensor
+    - switch
+exclude:
+  entities:
+    - sensor.elecricity_price
+    - sensor.latest_relese
+    - input_datetime.kwh_from
+    - input_datetime.kwh_to
+    - sensor.period_power_consumption
+    - sensor.boiler_off_timer
+    - sensor.current_version
+    - input_select.air_cond
+    - media_player.kodi
+    - sensor.cpu_speed
+    - sensor.forumhomeassistantcoil
+    - sensor.home
+    - sensor.latest_relese
+    - sensor.money_tree_battery
+    - sensor.current
+    - sensor.power
+    - sensor.voltage
+    - sensor.price
+    - sensor.uptime
+    - sensor.free_ram
+    - sensor.build
+    - sensor.esp0_light
+    - sensor.d1_dht11

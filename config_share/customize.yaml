@@ -1,0 +1,130 @@
+sensor.neato_battery:
+  icon: mdi:battery-90
+sensor.neato_status:
+  icon: mdi:bullseye
+sensor.money_tree_battery:
+  icon: mdi:battery-90
+sensor.money_tree_conductivity:
+  icon: mdi:pot
+sensor.money_tree_light_intensity:
+  icon: mdi:white-balance-sunny
+sensor.money_tree_moisture:
+  icon: mdi:water
+sensor.money_tree_temperature:
+  icon: mdi:thermometer-lines
+group.air_cond:
+  order: 1
+group.media:
+  order: 2
+group.boiler:
+  order: 3
+group.money_plant:
+  order: 4
+script.volume_up:
+  icon: mdi:volume-high
+script.volume_down:
+  icon: mdi:volume-medium
+script.volume_mute:
+  icon: mdi:volume-mute
+switch.tv:
+  icon: mdi:television
+script.tv_power:
+  icon: mdi:television
+script.sound_power:
+  icon: mdi:speaker
+script.mibox_power:
+  icon: mdi:kodi
+script.kartina_power:
+  icon: mdi:cast-connected
+sensor.current_version:
+  icon: mdi:information
+sensor.media_center_free_space:
+  icon: mdi:harddisk
+switch.neato_clean:
+  icon: mdi:broom
+switch.neato_schedule:
+  icon: mdi:calendar-clock
+switch.boiler:
+  icon: mdi:hot-tub
+sensor.boiler_off_time:
+  icon: mdi:timer-sand
+climate.tadiran:
+  icon: mdi:air-conditioner
+sensor.forumhomeassistantcoil:
+  icon: mdi:certificate
+sensor.voltage:
+  icon: mdi:flash
+sensor.current:
+  icon: mdi:flash
+sensor.power:
+  icon: mdi:flash
+sensor.price:
+  icon: mdi:currency-usd
+sensor.last_minute_avarage:
+  icon: mdi:flash
+input_datetime.kwh_from:
+  icon: mdi:calendar-clock
+input_datetime.kwh_to:
+  icon: mdi:calendar-clock
+sensor.elecricity_price:
+  icon: mdi:currency-usd
+sensor.period_power_consumption:
+  icon: mdi:flash
+sensor.boiler_turned_on:
+  icon: mdi:clock
+sensor.boiler_durationn:
+  icon: mdi:timer
+sensor.boiler_off_timer:
+  icon: mdi:timer-sand
+switch.parents_room_light:
+  icon: mdi:lightbulb-on
+switch.parents_room_fan:
+  icon: mdi:fan
+sensor.latest_relese:
+  icon: mdi:information
+sensor.events_table_size:
+  icon: mdi:database
+sensor.states_table_size:
+  icon: mdi:database
+sensor.forumhomeassistantcoil_expiration:
+  icon: mdi:certificate
+sensor.total_consumption:
+  icon: mdi:counter
+switch.balcony:
+  icon: mdi:lightbulb-on
+switch.bathroom:
+  icon: mdi:lightbulb-on
+switch.beauty_saloon:
+  icon: mdi:lightbulb-on
+switch.coridor:
+  icon: mdi:lightbulb-on
+switch.kitchen:
+  icon: mdi:lightbulb-on
+switch.living_room_2:
+  icon: mdi:lightbulb-on
+switch.enterence:
+  icon: mdi:lightbulb-on
+switch.living_room_1:
+  icon: mdi:lightbulb-on
+sensor.build:
+  icon: mdi:wrench
+sensor.free_ram:
+  icon: mdi:memory
+sensor.uptime:
+  icon: mdi:clock
+switch.bedroom_morning_heat:
+  icon: mdi:radiator
+script.bedroom_led:
+  icon: mdi:led-off
+switch.victorias_room:
+  icon: mdi:lightbulb-on
+switch.service_room:
+  icon: mdi:lightbulb-on
+switch.work_room:
+  icon: mdi:lightbulb-on
+input_text.tv_channel:
+  icon: mdi:television
+sensor.living_room_light:
+  icon: mdi:white-balance-sunny
+sensor.living_room_humidity:
+  icon: mdi:water-percent

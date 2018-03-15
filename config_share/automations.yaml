@@ -1,0 +1,323 @@
+- action:
+  - alias: Critical High Temperature
+    data_template:
+      message: Temperature in home is critical! its {{states.sensor.broadlink_sensor_temperature.state}}  degrees!
+    service_template: notify.telegram_notifier
+  alias: Critical High Temperature
+  condition: []
+  id: '1503480935419'
+  trigger:
+    above: '28.0'
+    entity_id: sensor.broadlink_sensor_temperature
+    platform: numeric_state
+- action:
+  - alias: Critical Low Temperature
+    data_template:
+      message: Temperature in home is critical! its {{states.sensor.broadlink_sensor_temperature.state}}  degrees!
+    service_template: notify.telegram_notifier
+  alias: Critical Low Temperature
+  condition: []
+  id: '1503480935433'
+  trigger:
+    below: '21.0'
+    entity_id: sensor.broadlink_sensor_temperature
+    platform: numeric_state
+
+- action:
+  - alias: notify
+    data_template:
+      message: '*RASPBERRY PI CPU TEMPERATURE IS CRITICAL! its {{states.sensor.cpu_temperature.state}}  degrees!*'
+    service_template: notify.telegram_notifier
+  - alias: notify-html
+    data:
+      message: its {{states.sensor.cpu_temperature.state}}  degrees!
+      title: RASPBERRY PI CPU TEMPERATURE IS CRITICAL!
+    service: notify.html
+  alias: Cpu Temperature
+  condition: []
+  id: '1504381451469'
+  trigger:
+  - above: '60.0'
+    below: '15.0'
+    entity_id: sensor.cpu_temperature
+    platform: numeric_state
+- action:
+  - data_template:
+      message: Please water your money tree. moisture is {{states.sensor.money_tree_moisture.state}}
+        %
+    service_template: notify.telegram_notifier
+  alias: Money Tree Moister
+  condition:
+  - below: '9'
+    condition: numeric_state
+    entity_id: sensor.money_tree_moisture
+  id: '1506188602140'
+  trigger:
+  - entity_id: device_tracker.galaxynote8
+    from: not_home
+    platform: state
+    to: home
+- action:
+  - data_template:
+      message: Please fertilize your money tree. its fertility is {{states.sensor.money_tree_conductivity.state}}
+    service_template: notify.telegram_notifier
+  alias: Money Tree Fertility
+  condition:
+  - below: '50'
+    condition: numeric_state
+    entity_id: sensor.money_tree_conductivity
+  id: '1506188603670'
+  trigger:
+  - entity_id: device_tracker.galaxynote8
+    from: not_home
+    platform: state
+    to: home
+- action:
+  - alias: notify
+    data_template:
+      message: '*Media center HDD is running out of scpace. free space is {{states.sensor.media_center_free_space.state}}
+        GB*'
+    service_template: notify.telegram_notifier
+  - alias: notify-html
+    data:
+      message: Media center HDD is running out of scpace. free space is {{states.sensor.media_center_free_space.state}}
+        GB
+      title: Hdd Low Space
+    service: notify.html
+  alias: media Hdd space
+  condition: []
+  id: '1504381451123'
+  trigger:
+  - below: '100'
+    entity_id: sensor.media_center_free_space
+    platform: numeric_state
+- alias: Update notifications
+  id: '1508501451123'
+  trigger:
+  - platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.telegram_notifier
+    data:
+      message: There is a new Home Assistant release available.
+      
+      
+      
+#########################################################################
+########################## BOILER #######################################
+#########################################################################      
+      
+      
+      
+- action:
+  - alias: BoilerOn
+    data:
+      entity_id: switch.boiler
+    entity_id: switch.boiler
+    service: switch.turn_on
+  alias: Boiler Automation 22:45
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: device_tracker.galaxys8
+      state: home
+    - condition: state
+      entity_id: device_tracker.galaxynote8
+      state: home
+  id: '1504125681549'
+  trigger:
+  - at: '22:45'
+    platform: time
+- action:
+  - alias: BoilerOnEarly
+    data:
+      entity_id: switch.boiler
+    entity_id: switch.boiler
+    service: switch.turn_on
+  alias: Boiler Automation 19:00
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: device_tracker.galaxys8
+      state: home
+    - condition: state
+      entity_id: device_tracker.galaxynote8
+      state: home
+  id: '1504125681587'
+  trigger:
+  - at: '19:00'
+    platform: time
+
+      
+- action:
+  - alias: boiler off timer
+    data:
+      duration: 01:00:00
+      entity_id: timer.boiler
+    service: timer.start
+  alias: Boiler Timer on
+  condition: []
+  id: '1504265547934'
+  trigger:
+  - entity_id: switch.boiler
+    from: 'off'
+    platform: state
+    to: 'on'           
+      
+- action:
+  - alias: boiler off timer cancel
+    data:
+      entity_id: timer.boiler
+    service: timer.cancel
+  alias: Boiler Timer Off
+  condition: []
+  id: '1510315796052'
+  trigger:
+  - entity_id: switch.boiler
+    from: 'on'
+    platform: state
+    to: 'off'
+- action:
+  - alias: Turn Off Boiler when finished
+    data:
+      entity_id: switch.boiler
+    service: switch.turn_off
+  alias: Boiler TIMER FINISHED
+  condition: []
+  id: '1510316447483'
+  trigger:
+  - entity_id: timer.boiler
+    platform: state
+    to: idle
+
+- alias: 'Turn Boiler At Time'
+  id: '150850709813'
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    minutes: '/1'
+    seconds: '0'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.boiler_on_time
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%R:00") == states.input_datetime.boiler_timer.state }}'
+  action:
+  - data:
+      entity_id: switch.boiler
+    service: switch.turn_on 
+    
+#########################################################################
+###################### END BOILER #######################################
+#########################################################################      
+    
+    
+#########################################################################
+########################## BEDROOM HEAT #################################
+#########################################################################
+
+ 
+
+
+- action:
+  - alias: bedroom heat off timer
+    data:
+      duration: 00:35:00
+      entity_id: timer.bedroom_morning_heat
+    service: timer.start
+  alias: bedroom heat off timer
+  condition: []
+  id: '1504960747934'
+  trigger:
+  - entity_id: switch.bedroom_morning_heat
+    from: 'off'
+    platform: state
+    to: 'on'    
+- action:
+  - alias: bedroom heat timer cancel
+    data:
+      entity_id: timer.bedroom_morning_heat
+    service: timer.cancel
+  alias: bedroom heat timer cancel
+  condition: []
+  id: '1510318461152'
+  trigger:
+  - entity_id: switch.bedroom_morning_heat
+    from: 'on'
+    platform: state
+    to: 'off'
+- action:
+  - alias: Turn Off morning heat when finished
+    data:
+      entity_id: switch.bedroom_morning_heat
+    service: switch.turn_off
+  alias: morning heat TIMER FINISHED
+  condition: []
+  id: '1510381650483'
+  trigger:
+  - entity_id: timer.bedroom_morning_heat
+    platform: state
+    to: idle
+    
+- alias: 'Turn morning Heat At Time'
+  id: '150847600813'
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    minutes: '/1'
+    seconds: '0'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_heat_on_time
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%R:00") == states.input_datetime.bedroom_heat_timer.state }}'
+  action:
+  - data:
+      entity_id: switch.bedroom_morning_heat
+    service: switch.turn_on 
+    
+    
+    
+#########################################################################
+###################### END BEDROOM HEAT #################################
+#########################################################################
+
+
+
+
+#########################################################################
+########################## Morning TV   #################################
+#########################################################################
+- alias: 'Turn morning TV At Time'
+  id: '150847651983'
+  initial_state: 'on'
+  trigger:
+  - platform: time
+    minutes: '/1'
+    seconds: '0'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.tv_timer
+        state: 'on'
+      - condition: template
+        value_template: '{{ now().time().strftime("%R:00") == states.input_datetime.tv_timer.state }}'
+  action:
+  - data:
+      entity_id: script.tv_channel
+    service: script.turn_on
+    
+    
+#########################################################################
+###################### END Morning TV #################################
+#########################################################################
+    

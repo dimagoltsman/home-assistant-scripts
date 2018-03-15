@@ -1,0 +1,6 @@
+- platform: polling
+  api_key: !secret telegram_api_key
+  allowed_chat_ids:
+    - 12345
+    - 67890
+    - 423189304

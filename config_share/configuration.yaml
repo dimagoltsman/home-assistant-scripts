@@ -1,0 +1,65 @@
+homeassistant:
+  name: Home
+  latitude: 31.2397401
+  longitude: 34.7743198
+  elevation: 8
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Asia/Jerusalem
+  customize: !include customize.yaml
+
+recorder: !include recorder.yaml
+
+frontend:
+  themes: !include themes.yaml
+
+config:
+
+mqtt:
+
+http:
+  api_password: !secret http_password
+  base_url: someDomain
+  login_attempts_threshold: 5
+
+updater:
+
+discovery:
+
+history:
+
+logbook:
+
+sun:
+
+conversation: 
+
+tts:
+  - platform: google
+  
+cloud:            !include    cloud.yaml
+group:            !include    groups.yaml
+automation:       !include    automations.yaml
+neato:            !include    neato.yaml
+device_tracker:   !include    device_tracker.yaml
+telegram_bot:     !include    telegram_bot.yaml
+notify:           !include    notify.yaml
+history_graph:    !include    history_graph.yaml
+logger:           !include    logger.yaml
+sensor:           !include    sensor.yaml
+panel_iframe:     !include    panel_iframe.yaml
+switch:           !include    switch.yaml
+panel_custom:     !include    panel_custom.yaml
+media_player:     !include    media_player.yaml
+shell_command:    !include    shell_command.yaml
+script:           !include    scripts.yaml
+camera:           !include    camera.yaml
+climate:          !include    climate.yaml
+google_assistant: !include    google_assistant.yaml
+input_datetime:   !include    input_datetime.yaml
+timer:            !include    timer.yaml
+scene:            !include    scene.yaml
+duckdns:          !include    duckdns.yaml
+input_boolean:    !include    input_boolean.yaml
+input_text:       !include    input_text.yaml
+

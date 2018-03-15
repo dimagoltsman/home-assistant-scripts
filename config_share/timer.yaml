@@ -1,0 +1,9 @@
+boiler:
+  name: Timer
+  duration: '01:00:00'
+  icon: mdi:camera-time
+  
+bedroom_morning_heat:
+  name: Bedroom Morning Heat
+  duration: '00:35:00'
+  icon: mdi:radiator 

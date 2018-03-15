@@ -1,0 +1,77 @@
+volume_up:
+  alias: Volume Up
+  sequence:
+  - alias: Volume Up
+    data: {}
+    service: shell_command.volume_up
+volume_down:
+  alias: Volume Down
+  sequence:
+  - alias: Volume Down
+    data: {}
+    service: shell_command.volume_down
+volume_mute:
+  alias: Mute
+  sequence:
+  - alias: Mute
+    data: {}
+    service: shell_command.volume_mute
+tv_power:
+  alias: TV
+  sequence:
+  - alias: TV
+    data: {}
+    service: shell_command.tv_power
+kartina_power:
+  alias: Kartina.TV
+  sequence:
+  - alias: Kartina.TV
+    data: {}
+    service: shell_command.kartina_power
+mibox_power:
+  alias: Mi Box
+  sequence:
+  - alias: Mi Box
+    data: {}
+    service: shell_command.mibox_power
+sound_power:
+  alias: Sound Projector
+  sequence:
+  - alias: Sound Projector
+    data: {}
+    service: shell_command.sound_power
+restart_transmission:
+  alias: Restart Transmission
+  sequence:
+  - alias: Restart Transmission
+    data: {}
+    service: shell_command.restart_transmission
+restart_sdm:
+  alias: Restart SDM
+  sequence:
+  - alias: Restart SDM
+    data: {}
+    service: shell_command.restart_sdm
+bedroom_led:
+  alias: Bedroom Led
+  sequence:
+  - alias: Bedroom Led
+    data: {}
+    service: shell_command.bedroom_led
+clear_logs:
+  alias: Clear Logs
+  sequence:
+  - alias: Clear Logs
+    data: {}
+    service: shell_command.clear_logs
+optimize_db:
+  alias: Optimize Database
+  sequence:
+  - alias: Optimize Database
+    data: {}
+    service: shell_command.optimize_sql
+tv_channel:
+  alias: TV Channel Script
+  sequence:
+  - data: {}
+    service: shell_command.tv_channel

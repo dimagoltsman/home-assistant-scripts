@@ -1,0 +1,30 @@
+kwh_from:
+  name: Measure from
+  has_date: true
+  has_time: false
+  initial: '2018-02-04'
+kwh_to:
+  name: Measure to
+  has_date: true
+  has_time: false
+  initial: '2027-01-01'
+  
+boiler_timer:
+  name: Boiler Turn On At
+  has_date: false
+  has_time: true
+  initial: '05:30'  
+  
+  
+  
+bedroom_heat_timer:
+  name: Bedroom Heat Turn On At
+  has_date: false
+  has_time: true
+  initial: '06:30'  
+  
+tv_timer:
+  name: Time
+  has_date: false
+  has_time: true
+  initial: '07:30'  

@@ -1,0 +1,8 @@
+media_player.chromecastdima:
+  name: Chromecast
+  platform: cast
+  unique_id: e1a026a3-8133-6e6a-5451-1bb2abb99d3b
+media_player.mibox3:
+  name:
+  platform: cast
+  unique_id: 868a5fa3-22cb-c9fd-11ae-bbe536475151

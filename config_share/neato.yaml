@@ -1,0 +1,2 @@
+username: user@name.net
+password: !secret neato_password

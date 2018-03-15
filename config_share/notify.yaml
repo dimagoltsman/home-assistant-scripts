@@ -1,0 +1,7 @@
+- name: telegram_notifier
+  platform: telegram
+  chat_id: 34636563457
+- name: html
+  platform: html5
+  gcm_api_key: 'gcmKey'
+  gcm_sender_id: '2346788978'

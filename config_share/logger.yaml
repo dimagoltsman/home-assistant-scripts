@@ -1,0 +1,4 @@
+default: error
+logs:
+  homeassistant.components.http.ban: warning
+  homeassistant.components.sensor.broadlink: debug

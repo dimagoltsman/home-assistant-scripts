@@ -1,0 +1,23 @@
+- platform: broadlink
+  name: Tadiran
+  host: 192.168.1.151
+  mac: '34:EA:34:C7:CA:8F'
+  ircodes_ini: 'custom_components/broadlink_climate_codes/tadiran.ini'
+  min_temp: 16
+  max_temp: 30
+  target_temp: 26
+  temp_sensor: sensor.living_room_temperature
+  default_operation: idle
+  default_fan_mode: mid
+  customize:
+    operations:
+      - idle
+      - cool
+      - fan
+      - heat
+    fan_modes:
+      - low
+      - mid
+      - hig
+      
+      
